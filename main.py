@@ -1,5 +1,6 @@
 import json
 import GOT
+import login
 
 
 def initialise_config(path: str) -> dict:
@@ -13,6 +14,12 @@ def initialise_config(path: str) -> dict:
 
 
 if __name__ == '__main__':
+    player = login.login()
+    with open("auth.json", "r") as f:
+        users = json.loads(f.read())
+    for user in player.keys():
+        player = user
+        break
     config = initialise_config("config.json")
     score = 0
     while True:
@@ -22,5 +29,7 @@ if __name__ == '__main__':
             score += GOT.character_name(character_dict)
         if character_num == 0:
             break
-
-    print(score)
+    if score > users[player]['score']:
+        users[player]['score'] = score
+    with open("auth.json", "w") as f:
+        f.write(json.dumps(users, indent=4))

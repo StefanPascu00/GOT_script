@@ -36,3 +36,5 @@ def character_name(character_dict: dict) -> int:
     if name == character_dict['name']:
         return 1
     return 0
+
+
