@@ -34,7 +34,9 @@ def character_name(character_dict: dict) -> int:
         print("Nu avem aliases sau titles alegeti alt numar.")
     name = input("Care este numele personajului ? ")
     if name == character_dict['name']:
+        print("Correct answer.")
         return 1
+    print("Wrong answer.")
     return 0
 
 
