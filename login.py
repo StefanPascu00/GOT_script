@@ -14,7 +14,7 @@ def add_user(player_id: str, all_players: dict, path: str = "auth.json") -> dict
             passwd = ""
             confirm_passwd = " "
 
-    new_user = {player_id: {"score": 0, "password": passwd, "time": "0"}}
+    new_user = {player_id: {"score": 0, "password": passwd, "time_sec": "0"}}
     all_players.update(new_user)
     with open(path, "w") as f:
         f.write(json.dumps(all_players, indent=4))

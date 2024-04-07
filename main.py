@@ -1,6 +1,7 @@
 import json
 import GOT
 import login
+import time
 
 
 def initialise_config(path: str) -> dict:
@@ -34,6 +35,7 @@ if __name__ == '__main__':
         player_pick = input(MENU)
         match player_pick:
             case "1":
+                start = time.time()
                 while True:
                     character_num = int(input("Introduceti un numar intre 1 si 999 sau 0 pentru exit: "))
                     if 0 < character_num < 1000:
@@ -41,8 +43,10 @@ if __name__ == '__main__':
                         score += GOT.character_name(character_dict)
                     if character_num == 0:
                         break
+                end = time.time()
                 if score > users[player]['score']:
                     users[player]['score'] = score
+                    users[player]['time_sec'] = int(end - start)
                 with open("auth.json", "w") as f:
                     f.write(json.dumps(users, indent=4))
             case "2":
